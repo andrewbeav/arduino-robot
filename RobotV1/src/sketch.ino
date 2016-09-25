@@ -171,12 +171,7 @@ void objAvoid() {
 	int rightRead = analogRead(A2);
 
 	// Nothing under IR sensors
-	if (leftRead > 800 || rightRead > 800) {
-		turnLeft();
-		delay(300);
-	}
-	// object within 4 cm of ultrasonic sensor
-	if (distance < 4) {
+	if (leftRead > 800 || rightRead > 800 || distance < 4) {
 		turnLeft();
 		delay(300);
 	}

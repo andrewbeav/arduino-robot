@@ -3,15 +3,15 @@
 #include <Adafruit_PWMServoDriver.h>
 void setup();
 void setServoPulse(uint8_t n, double pulse);
-int goForward ();
-int goReverse ();
-int turnRight ();
-int turnLeft ();
-int turnLeftOneWheel ();
-int turnRightOneWheel ();
+void goForward ();
+void goReverse ();
+void turnRight ();
+void turnLeft ();
+void turnLeftOneWheel ();
+void turnRightOneWheel ();
 void loop();
 void dance ();
-void tableSense();
+void objAvoid();
 void lineFollow ();
 #line 1 "src/sketch.ino"
 /***************************************************
@@ -101,32 +101,32 @@ void setServoPulse(uint8_t n, double pulse) {
 	Below, I have pre-defined several functions that when called will make the robot do common tasks
 	such as going forward, left, right, and reverse.
 */
-int goForward () {
+void goForward () {
 	pwm.setPWM(RIGHT, 0, RIGHTMAX);
 	pwm.setPWM(LEFT, 0, LEFTMAX);
 }
 
-int goReverse () {
+void goReverse () {
 	pwm.setPWM(RIGHT, 0, RIGHTMIN);
 	pwm.setPWM(LEFT, 0, LEFTMIN);
 }
 
-int turnRight () {
+void turnRight () {
 	pwm.setPWM(RIGHT, 0, RIGHTMIN);
 	pwm.setPWM(LEFT, 0, LEFTMAX);
 }
 
-int turnLeft () {
+void turnLeft () {
 	pwm.setPWM(RIGHT, 0, RIGHTMAX);
 	pwm.setPWM(LEFT, 0, LEFTMIN);
 }
 
-int turnLeftOneWheel () {
+void turnLeftOneWheel () {
 	pwm.setPWM(RIGHT, 0, RIGHTMAX);
 	pwm.setPWM(LEFT, 0, LEFTSTOP);
 }
 
-int turnRightOneWheel () {
+void turnRightOneWheel () {
 	pwm.setPWM(RIGHT, 0, RIGHTSTOP);
 	pwm.setPWM(LEFT, 0, LEFTMAX);
 }
@@ -170,7 +170,7 @@ void dance () {
 	as well as the custom infrared optical reflective sensors.
 	(detail on sensors in instructable)
 */
-void tableSense() {
+void objAvoid() {
 
 	// Setting up ultrasonic sensor and getting distance
   	long duration, distance;
